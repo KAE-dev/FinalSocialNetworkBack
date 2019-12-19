@@ -47,9 +47,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 // .antMatchers -> Ant: * - всё, но не /, ** - всё, включая /
                     .antMatchers("/error").permitAll()
-                    .antMatchers("/api/files/**").permitAll()
                     .antMatchers(HttpMethod.POST, "/api/users").permitAll()
-                    .antMatchers("/api/**").hasRole("USER")
+                    .antMatchers(HttpMethod.GET, "/api/files/**").permitAll()
+                    .antMatchers(HttpMethod.POST, "/api/files/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
                 .httpBasic();
